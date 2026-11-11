@@ -1,131 +1,1228 @@
-
+/* ── RESET & BASE ── */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  overflow: hidden;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  color: #222;
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.2s ease;
 }
 
-.navbar {
+input, select {
+  font-family: inherit;
+}
+
+/* ── MAIN CONTAINER (100VH NO SCROLL) ── */
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+/* ── NAVBAR ── */
+.top-navbar {
+  height: 64px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 8%;
-  background: white;
+  padding: 0 40px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
-.navbar h2 span {
-  color: #a71930;
+.brand-logo h1 {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #0f172a;
 }
 
-.nav-links {
-  display: flex;
-  gap: 25px;
+.brand-logo h1 span {
+  color: #c0122c;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-}
-
-button, .primary-btn {
-  background: #a71930;
-  color: white;
-  border: none;
-  padding: 13px 22px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.hero {
-  min-height: 420px;
+.nav-controls {
   display: flex;
   align-items: center;
-  padding: 60px 10%;
-  color: white;
-  background: linear-gradient(90deg, #171717, #555);
 }
 
-.hero div {
-  max-width: 550px;
+.auth-nav-buttons {
+  display: flex;
+  gap: 12px;
 }
 
-.tagline {
-  color: #ff697e;
-  font-weight: bold;
-  margin-bottom: 18px;
+.btn-nav-signin {
+  background: transparent;
+  color: #c0122c;
+  border: 1.5px solid #c0122c;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.hero h1 {
-  font-size: 45px;
-  margin-bottom: 18px;
+.btn-nav-signin:hover {
+  background: #fdf2f4;
 }
 
-.hero p {
-  line-height: 1.7;
-  margin-bottom: 25px;
+.btn-nav-signup {
+  background: #c0122c;
+  color: #ffffff;
+  padding: 9px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.booking, .about {
-  padding: 60px 10%;
+.btn-nav-signup:hover {
+  background: #a01026;
+}
+
+/* Authenticated User Nav Group */
+.user-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-tab-switch {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.btn-nav-tab {
+  background: transparent;
+  color: #64748b;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn-nav-tab:hover {
+  color: #0f172a;
+}
+
+.btn-nav-tab.active-nav-tab {
+  background: #ffffff;
+  color: #c0122c;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.user-profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 6px 16px;
+  border-radius: 30px;
+}
+
+.user-display-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.btn-signout {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn-signout:hover {
+  background: #fecaca;
+}
+
+/* ── SCREEN 1: ONLY WEBSITE INTRODUCTION (NO BOTTOM BUTTONS) ── */
+.intro-full-layout {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 48px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.intro-content-wrapper {
+  max-width: 900px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.booking form {
-  background: white;
-  max-width: 550px;
-  margin: 30px auto 0;
-  padding: 30px;
-  border-radius: 10px;
+.intro-heading {
+  font-size: clamp(34px, 4.5vw, 50px);
+  font-weight: 800;
+  line-height: 1.18;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.highlight-text {
+  color: #c0122c;
+}
+
+.intro-main-description {
+  font-size: 17px;
+  color: #64748b;
+  line-height: 1.65;
+  margin-bottom: 36px;
+  max-width: 720px;
+}
+
+.intro-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
   text-align: left;
 }
 
-.booking label {
-  display: block;
-  margin: 15px 0 8px;
+.intro-feature-card {
+  background: #ffffff;
+  padding: 24px 22px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
-.booking input {
+.feature-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #c0122c;
+  background: #fef2f2;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.intro-feature-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.intro-feature-card p {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── SCREEN 2: AUTHENTICATED PORTAL WORKSPACE ── */
+.portal-main-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: 24px;
+  padding: 20px 40px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.panel-title-bar {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-title-bar h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.badge-subtitle {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Portal Vehicles Column */
+.portal-vehicles-panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.portal-vehicle-items {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-right: 4px;
+}
+
+.portal-vehicle-items::-webkit-scrollbar,
+.portal-booking-panel::-webkit-scrollbar,
+.my-bookings-full-panel::-webkit-scrollbar {
+  width: 5px;
+}
+
+.portal-vehicle-items::-webkit-scrollbar-thumb,
+.portal-booking-panel::-webkit-scrollbar-thumb,
+.my-bookings-full-panel::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.portal-vehicle-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.portal-vehicle-card:hover:not(.unavailable) {
+  border-color: #fca5a5;
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.portal-vehicle-card.selected {
+  border-color: #c0122c;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(192, 18, 44, 0.12);
+}
+
+.portal-vehicle-card.unavailable {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: #f8fafc;
+}
+
+/* Philippine E-Bike Visual Container & SVG */
+.vehicle-photo-container {
+  width: 100%;
+  height: 124px;
+  position: relative;
+  background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ph-ebike-svg {
+  width: 100%;
+  height: 100%;
+  max-height: 110px;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.portal-vehicle-card:hover:not(.unavailable) .ph-ebike-svg {
+  transform: scale(1.02);
+}
+
+.photo-status-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.photo-status-tag.available {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.photo-status-tag.unavailable {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.card-info-content {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-top-row h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.vehicle-type-text {
+  font-size: 11px;
+  color: #64748b;
+  display: block;
+}
+
+.vehicle-description-text {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.card-specs-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: #475569;
+  padding-top: 2px;
+}
+
+.vehicle-rate-badge {
+  color: #c0122c;
+  font-size: 14px;
+}
+
+.vehicle-rate-badge small {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.btn-choose-vehicle {
+  width: 100%;
+  padding: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #334155;
+  margin-top: 4px;
+}
+
+.btn-choose-vehicle:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
+.active-choose {
+  background: #16a34a !important;
+  color: #ffffff !important;
+}
+
+/* Portal Booking Column */
+.portal-booking-panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.active-vehicle-banner {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #c0122c;
+  border-radius: 8px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.banner-graphic-thumb {
+  width: 76px;
+  height: 52px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.banner-details {
+  flex: 1;
+}
+
+.banner-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.banner-details h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 1px 0;
+}
+
+.banner-details p {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.banner-rate {
+  text-align: right;
+}
+
+.banner-rate span {
+  font-size: 11px;
+  color: #64748b;
+  display: block;
+}
+
+.banner-rate strong {
+  font-size: 18px;
+  color: #c0122c;
+}
+
+.booking-error-alert {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.portal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.form-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+.portal-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.portal-input-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.portal-input-group input, .portal-input-group select {
+  padding: 10px 12px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #0f172a;
+  background: #ffffff;
+  transition: border-color 0.2s;
+}
+
+.portal-input-group input:focus, .portal-input-group select:focus {
+  outline: none;
+  border-color: #c0122c;
+}
+
+.live-fare-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 4px;
+}
+
+.fare-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #475569;
+  padding: 3px 0;
+}
+
+.fare-separator {
+  border-top: 1px dashed #cbd5e1;
+  margin: 6px 0;
+}
+
+.fare-line.total {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.fare-line.total strong {
+  color: #c0122c;
+  font-size: 17px;
+}
+
+.btn-confirm-ride {
+  width: 100%;
+  padding: 13px;
+  background: #c0122c;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  margin-top: auto;
+}
+
+.btn-confirm-ride:hover:not(:disabled) {
+  background: #a01026;
+  box-shadow: 0 4px 12px rgba(192, 18, 44, 0.25);
+}
+
+.btn-confirm-ride:disabled {
+  background: #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+/* ── VIEW B: MY BOOKED E-BIKES & STATUS FULL PANEL ── */
+.my-bookings-full-panel {
+  grid-column: 1 / -1;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.btn-new-reservation {
+  background: #c0122c;
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.btn-new-reservation:hover {
+  background: #a01026;
+}
+
+.empty-bookings-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-bookings-box h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.empty-bookings-box p {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 20px;
+}
+
+.btn-empty-book {
+  background: #c0122c;
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btn-empty-book:hover {
+  background: #a01026;
+}
+
+.bookings-grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 18px;
+  padding-top: 10px;
+}
+
+.booking-status-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.booking-status-card:hover {
+  border-color: #cbd5e1;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.status-ref-group {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.status-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+
+.status-ref-code {
+  font-size: 13px;
+  color: #0f172a;
+  font-family: monospace;
+}
+
+.live-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.status-confirmed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.card-vehicle-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.booked-vehicle-thumb {
+  width: 72px;
+  height: 50px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.card-vehicle-row h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.booked-passenger-text {
+  font-size: 12px;
+  color: #64748b;
+  display: block;
+}
+
+.booked-fare-tag {
+  margin-left: auto;
+  text-align: right;
+}
+
+.booked-fare-tag span {
+  font-size: 10px;
+  color: #64748b;
+  display: block;
+}
+
+.booked-fare-tag strong {
+  font-size: 15px;
+  color: #c0122c;
+}
+
+.card-route-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.route-point {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.point-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.point-dot.pickup {
+  background: #16a34a;
+}
+
+.point-dot.dest {
+  background: #c0122c;
+}
+
+.route-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-right: 6px;
+}
+
+.route-point strong {
+  font-size: 13px;
+  color: #1e293b;
+}
+
+.route-line {
+  width: 2px;
+  height: 10px;
+  background: #cbd5e1;
+  margin-left: 3px;
+}
+
+.card-schedule-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.schedule-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.schedule-info strong {
+  font-size: 12px;
+  color: #0f172a;
+}
+
+.booking-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-view-receipt {
+  background: #f1f5f9;
+  color: #334155;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn-view-receipt:hover {
+  background: #e2e8f0;
+}
+
+.btn-cancel-ride {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn-cancel-ride:hover {
+  background: #fecaca;
+}
+
+/* ── AUTH DIALOG MODAL (POPUP) ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.auth-dialog, .receipt-modal-box {
+  background: #ffffff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px 24px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: modalScale 0.2s ease-out;
+}
+
+@keyframes modalScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.dialog-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dialog-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.auth-tab-switch {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 3px;
+  margin-bottom: 20px;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  background: transparent;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  border-radius: 6px;
+}
+
+.auth-tab-btn.active-tab {
+  background: #ffffff;
+  color: #c0122c;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.dialog-header h3 {
+  font-size: 19px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.dialog-header p {
+  font-size: 13px;
+  color: #64748b;
+  margin: 4px 0 16px;
+}
+
+.dialog-error-box {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dialog-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dialog-input-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.dialog-input-group input {
+  padding: 10px 12px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.dialog-input-group input:focus {
+  outline: none;
+  border-color: #c0122c;
+}
+
+.btn-dialog-submit {
+  width: 100%;
+  padding: 11px;
+  background: #c0122c;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 7px;
+  margin-top: 4px;
+}
+
+.btn-dialog-submit:hover:not(:disabled) {
+  background: #a01026;
+}
+
+.btn-dialog-submit:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.dialog-switch-hint {
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 14px;
+}
+
+.link-span {
+  color: #c0122c;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.link-span:hover {
+  text-decoration: underline;
+}
+
+/* ── RECEIPT CONFIRMATION MODAL ── */
+.receipt-modal-box {
+  text-align: center;
+}
+
+.receipt-badge-label {
+  display: inline-block;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.receipt-modal-box h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.receipt-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 4px 0 16px;
+}
+
+.receipt-summary-table {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.receipt-item-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  font-size: 13px;
+}
+
+.receipt-item-row .lbl {
+  color: #64748b;
+}
+
+.receipt-item-row strong {
+  color: #0f172a;
+}
+
+.code-value {
+  color: #c0122c !important;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.val-status {
+  color: #15803d;
+}
+
+.receipt-item-divider {
+  border-top: 1px dashed #cbd5e1;
+  margin: 6px 0;
+}
+
+.fare-summary-row {
+  padding-top: 4px;
+}
+
+.fare-total-val {
+  font-size: 16px;
+  color: #c0122c !important;
+}
+
+.btn-modal-close {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 7px;
 }
 
-.booking button {
-  width: 100%;
-  margin-top: 25px;
+.btn-modal-close:hover {
+  background: #15803d;
 }
 
-.about p {
-  margin-top: 15px;
-  line-height: 1.7;
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2000;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  animation: toastFade 0.2s ease-out;
 }
 
-footer {
-  background: #181818;
-  color: white;
-  text-align: center;
-  padding: 35px;
-  line-height: 2;
+@keyframes toastFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
+.toast-success {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.toast-error {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  html, body {
+    overflow: auto;
+    height: auto;
   }
-
-  .hero h1 {
-    font-size: 34px;
+  .app-container {
+    height: auto;
+    min-height: 100vh;
+  }
+  .intro-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .portal-main-layout {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .bookings-grid-list {
+    grid-template-columns: 1fr;
   }
 }
